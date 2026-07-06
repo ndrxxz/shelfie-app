@@ -1,31 +1,61 @@
-import { StyleSheet, Text } from "react-native";
-import React from "react";
-import { Spacer, ThemedButton, ThemedText, ThemedView } from "@/components";
+import {
+  Keyboard,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+} from "react-native";
+import React, { useState } from "react";
+import {
+  Spacer,
+  ThemedButton,
+  ThemedText,
+  ThemedTextInput,
+  ThemedView,
+} from "@/components";
 import { Link } from "expo-router";
 
 const Register = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = () => {
-    console.log("register form submitted");
-  }
+    console.log("register form submitted", email, password);
+  };
 
   return (
-    <ThemedView style={styles.container}>
-      <Spacer />
-      <ThemedText title={true} style={styles.title}>
-        Register for an Account
-      </ThemedText>
-
-      <ThemedButton onPress={handleSubmit}>
-        <Text style={{ color: "#f2f2f2", }}>Register</Text>
-      </ThemedButton>
-
-      <Spacer height={100} />
-      <Link href={"/login"}>
-        <ThemedText style={{ textAlign: "center" }}>
-          Login instead
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ThemedView style={styles.container}>
+        <Spacer />
+        <ThemedText title={true} style={styles.title}>
+          Register for an Account
         </ThemedText>
-      </Link>
-    </ThemedView>
+
+        <ThemedTextInput
+          style={{ width: "80%", marginBottom: 20 }}
+          placeholder="Email"
+          keyboardType="email-address"
+          onChangeText={setEmail}
+          value={email}
+        />
+
+        <ThemedTextInput
+          style={{ width: "80%", marginBottom: 20 }}
+          placeholder="Password"
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry
+        />
+
+        <ThemedButton onPress={handleSubmit}>
+          <Text style={{ color: "#f2f2f2" }}>Register</Text>
+        </ThemedButton>
+
+        <Spacer height={100} />
+        <Link href={"/login"}>
+          <ThemedText style={{ textAlign: "center" }}>Login instead</ThemedText>
+        </Link>
+      </ThemedView>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -35,7 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   title: {
     textAlign: "center",
