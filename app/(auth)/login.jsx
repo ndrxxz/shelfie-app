@@ -1,13 +1,22 @@
-import { Pressable, StyleSheet, Text } from "react-native";
-import React from "react";
-import { Spacer, ThemedButton, ThemedText, ThemedView } from "@/components";
+import { StyleSheet, Text, TextInput } from "react-native";
+import React, { useState } from "react";
+import {
+  Spacer,
+  ThemedButton,
+  ThemedText,
+  ThemedTextInput,
+  ThemedView,
+} from "@/components";
 import { Link } from "expo-router";
 import { Colors } from "@/constants";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = () => {
-    console.log("login form submitted");
-  }
+    console.log("login form submitted", email, password);
+  };
 
   return (
     <ThemedView style={styles.container}>
@@ -16,8 +25,24 @@ const Login = () => {
         Login to Your Account
       </ThemedText>
 
+      <ThemedTextInput
+        style={{ width: "80%", marginBottom: 20 }}
+        placeholder="Email"
+        keyboardType="email-address"
+        onChangeText={setEmail}
+        value={email}
+      />
+
+      <ThemedTextInput
+        style={{ width: "80%", marginBottom: 20 }}
+        placeholder="Password"
+        onChangeText={setPassword}
+        value={password}
+        secureTextEntry
+      />
+
       <ThemedButton onPress={handleSubmit}>
-        <Text style={{ color: "#f2f2f2", }}>Login</Text>
+        <Text style={{ color: "#f2f2f2" }}>Login</Text>
       </ThemedButton>
 
       <Spacer height={100} />
@@ -36,7 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   title: {
     textAlign: "center",

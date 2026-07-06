@@ -4,3 +4,4 @@ export { default as ThemedLogo } from "./ThemedLogo";
 export { default as Spacer } from "./Spacer";
 export { default as ThemedText } from "./ThemedText";
 export { default as ThemedButton } from "./ThemedButton";
+export { default as ThemedTextInput } from "./ThemedTextInput";
