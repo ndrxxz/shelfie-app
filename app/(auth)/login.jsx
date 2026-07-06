@@ -3,6 +3,7 @@ import React from "react";
 import { Spacer, ThemedButton, ThemedText, ThemedView } from "@/components";
 import { Link } from "expo-router";
 import { Colors } from "@/constants";
+
 const Login = () => {
   const handleSubmit = () => {
     console.log("login form submitted");
